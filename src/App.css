@@ -1,0 +1,129 @@
+:root {
+    --primary-color: rgb(0, 101, 219);
+    --secondary-color: rgba(0, 212, 255, 1);
+    --background-color: #fff;
+    --text-color: #2c444e;
+  }
+  
+  /* @media (prefers-color-scheme: dark) {
+    :root {
+      --primary-color: #46045e;
+      --secondary-color: rgba(179, 0, 255, 1);
+      --background-color: #38004c;
+      --text-color: #f3ebf6;
+    }
+  } */
+  
+  /* Home */
+  #home {
+    background: var(--primary-color);
+    background: linear-gradient(
+      90deg,
+      var(--primary-color) 50%,
+      var(--secondary-color) 100%
+    );
+    min-height: 500px;
+  }
+  #light {
+    background-color: var(--background-color);
+  }
+  /* #dark {
+    background-color: var(--background-color);
+  } */
+  
+  #light .main {
+    background-color: var(--background-color);
+  }
+  
+  /* #dark .main {
+    background-color: var(--background-color);
+  } */
+  
+  /* Cards */
+  .card {
+    transition: all 0.5s ease;
+  }
+  .card:hover {
+    cursor: pointer;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    background-color: var(--primary-color);
+    color: var(--background-color);
+  }
+  
+  /* Form */
+  .form {
+    background: var(--primary-color);
+    background: linear-gradient(
+      90deg,
+      var(--primary-color) 30%,
+      var(--secondary-color) 100%
+    );
+  }
+  
+  /* Footer */
+  .footer {
+    background: var(--primary-color);
+    background: linear-gradient(
+      90deg,
+      var(--primary-color) 40%,
+      var(--secondary-color) 100%
+    );
+  }
+  
+  .google_btn {
+    width: 230px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: var(--background-color);
+    box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px,
+      rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 20px 0;
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .google_btn > img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+  }
+  
+  .google_btn > span {
+    margin-left: 10px;
+  }
+  .settings-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }
+  
+  form {
+    margin-top: 2rem;
+  }
+  .stripe-card {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .billing-address {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  
+  
+  
+  
+  

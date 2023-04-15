@@ -1,0 +1,62 @@
+name: Release Build
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set Release Tag
+      id: var1
+      run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}-${{ env.APP_VERSION_NAME }}
+
+    - name: Get Tag
+      id: var
+      run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
+    - name: Build
+      run: |
+        xcodebuild -workspace Calculator.xcworkspace -scheme Calculator -destination 'platform=iOS Simulator,name=iPhone 12 Pro' build test
+    - name: Create IPA
+      run: |
+        xcodebuild -workspace MyApp.xcworkspace -scheme MyApp -configuration Release -archivePath $PWD/build/MyApp.xcarchive archive
+        xcodebuild -exportArchive -archivePath $PWD/build/MyApp.xcarchive -exportOptionsPlist exportOptions.plist -exportPath $PWD/build
+    - name: Make artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: app-release-signed
+        path: ${{ github.workspace }}/build/MyApp.ipa
+
+    - name: Build Changelog
+      id: changelog
+      uses: ardalanamini/auto-changelog@v3
+      with:
+        mention-authors: false
+        mention-new-contributors: false
+        include-compare: false
+        semver: false
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ env.APP_VERSION_NAME }}
+        body: ${{ steps.changelog.outputs.changelog }} &#x20;
+      env:
+        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+
+    - name: Upload IPA
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ github.workspace }}/build/MyApp.ipa
+        asset_name: MyApp-${{ env.APP_VERSION_NAME }}.ipa
+        asset_content_type: application/octet-stream

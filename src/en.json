@@ -1,0 +1,22 @@
+{
+    "generalSettings": "General Settings",
+    "language": "Language",
+    "english": "English",
+    "french":"French",
+    "chinese": "Chinese",
+    "korean": "Korean",
+    "darkMode": "Dark Mode",
+    "email": "Email",
+    "username": "Username",
+    "saveChanges": "Save Changes",
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact",
+    "businessPerspective": "Feels the Fresh Business Perspective",
+    "perspectiveDescription": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit obcaecati aut molestiae porro reiciendis consectetur maiores atque necessitatibus blanditiis provident.",
+    "getQuote": "Get Quote",
+    "ourServices": "Our Services",
+    "Subscribe to our newsletter":"Subscribe to our newsletter "
+
+}
